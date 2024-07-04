@@ -45,8 +45,8 @@ git clone https://github.com/kunal-ma/polycon.git
 
 - **Option 1** : The `icon_list.py` script automates the process of updating the necessary XML files to reflect the changes made to the icons. To use the script, follow these steps:
 
-    > [!IMPORTANT]
-    > The script requires Python to be installed on your system, and available in your PATH.
+> [!IMPORTANT]
+> The script requires Python to be installed on your system, and available in your PATH.
 
   - Add, remove or replace the icons to the `app/src/main/res/drawable` directory.
 
@@ -74,8 +74,8 @@ git clone https://github.com/kunal-ma/polycon.git
 
 - **Option 1** : You can build the APK using Android Studio. To do this, open the project in Android Studio and build the project using the `Build > Generate Signed Bundle / APK` option.
   
-  > [!IMPORTANT]
-  This method requires [Android Studio](https://developer.android.com/studio) with the Android SDK installed, as well as [keystores](https://developer.android.com/studio/publish/app-signing#generate-key) for signing the APK.
+> [!IMPORTANT]
+> This method requires [Android Studio](https://developer.android.com/studio) with the Android SDK installed, as well as [keystores](https://developer.android.com/studio/publish/app-signing#generate-key) for signing the APK.
 
 - **Option 2** : You can build the APK using the Gradle build system. To do this, perform the following steps:
 
