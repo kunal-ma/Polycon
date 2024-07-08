@@ -1,4 +1,3 @@
-<br />
 <div align="center">
 <h1 align="center">Polycon</h1>
 
@@ -28,10 +27,9 @@ git clone https://github.com/kunal-ma/polycon.git
 
 ### Customizing the Icons
 
-- The icons are stored in the `app/src/main/res/drawable` directory. You can add, remove or replace existing icons as needed.
+> [!WARNING]
+> The icons must follow the specified parameters. Failure to do so may result in the icon pack not working as intended.
 
-  **Note** : To get icons from other icon packs, refer to `scripts/Extraction.md`.
-  
 - The icons must follow the following parameters:
   - The icon must be square in shape.
   - The icon must be in PNG format.
@@ -41,41 +39,73 @@ git clone https://github.com/kunal-ma/polycon.git
   - Lowercase letters only (e.g., `clock.png`)
   - To add spaces, use underscores (e.g., `google_pay.png`)
 
+**Note** : To get icons from other icon packs, refer to the [Extraction Guide](https://github.com/kunal-ma/Polycon/blob/main/scripts/Extraction.md).
+
 ### Updating the XML Files
 
-- **Option 1** : The `icon_list.py` script automates the process of updating the necessary XML files to reflect the changes made to the icons. To use the script, follow these steps:
+> [!WARNING]
+> These XML files are used to generate the icon pack. Ensure that the XML files are updated properly and accurately. Failure to do so may result in the icon pack not working as intended.
+
+There are two ways to update the files and folders :
+
+- **Option 1** : You can manually update the XML files to reflect the changes made to the icons. For example, the `Apps` group contains the `google_pay.png` and `clock.png` icons. The folders and XML files are updated as follows:
+
+  - Move the icons to the `app/src/main/res/drawable` directory. **Do not** create subdirectories within the `drawable` directory.
+
+  - Update the `app/src/main/res/xml/drawable.xml` file:
+  
+    ```xml
+    <!-- Add the group name to the category title -->
+    <!-- Add the icons to the group -->
+    <category title="Apps" />
+    <item drawable="google_pay" />
+    <item drawable="clock" />
+    ```
+
+  - Update the `app/src/main/res/values/icon_pack.xml` file:
+
+    ```xml
+    <!-- Add the group name to the icon_pack array -->
+    <string-array name="icon_pack"> 
+        <item>Apps</item>
+    </string-array>
+
+    <!-- Add the icons to the Apps array -->
+    <string-array name="Apps">
+        <item>google_pay</item>
+        <item>clock</item>
+    </string-array>
+    ```
 
 > [!IMPORTANT]
-> The script requires Python to be installed on your system, and available in your PATH.
+> The following method implements a script and requires Python to be installed on your system, and available in your PATH.
 
-  - Add, remove or replace the icons to the `app/src/main/res/drawable` directory.
+- **Option 2** : The `icon_list.py` script automates the process of updating the necessary folders and XML files to reflect the changes made to the icons. To use the script, follow these steps:
 
-  - Run the following script via the terminal in the root directory of the project:
+  - Add, remove or replace the icons to the `icons` directory. To group the icons, you can create subdirectories within the `icons` directory. The **names of the subdirectories** will be used as the **group names** in the icon pack.
+  
+    As an example, my curated selection of icons are organized into folders such as `Apps`, `Games`, etc. However, **do not** make subdirectories within the subdirectories.
+
+  - Run the following script via the terminal in the **root directory** of the project:
 
     ```sh
     python scripts/icon_list.py
     ```
 
-- **Option 2** : Alternatively, you can manually update the XML files to reflect the changes made to the icons. The XML files and their corresponding entries are as follows:
-
-  - `app/src/main/res/xml/drawable.xml`
-  
-    ```xml
-    <item drawable="icon_name" />
-    ```
-
-  - `app/src/main/res/values/icon_pack.xml`
-
-    ```xml
-    <item>icon_name</item>
-    ```
-  
 ### Compiling the APK
 
-- **Option 1** : You can build the APK using Android Studio. To do this, open the project in Android Studio and build the project using the `Build > Generate Signed Bundle / APK` option.
-  
 > [!IMPORTANT]
-> This method requires [Android Studio](https://developer.android.com/studio) with the Android SDK installed, as well as [keystores](https://developer.android.com/studio/publish/app-signing#generate-key) for signing the APK.
+> The following method requires [Android Studio](https://developer.android.com/studio) with the Android SDK installed, as well as [keystores](https://developer.android.com/studio/publish/app-signing#generate-key) for signing the APK.
+
+- **Option 1** : You can build the APK using Android Studio. To do this, perform the following steps:
+  
+  - Open the project in Android Studio and finish syncing the project.
+  
+  - Build the project using the `Build > Generate Signed Bundle / APK` option. More information can be found [here](https://developer.android.com/studio/publish/app-signing#sign_release).
+
+  - The APK will be generated in the `app/release` directory.
+
+<br />
 
 - **Option 2** : You can build the APK using the Gradle build system. To do this, perform the following steps:
 
@@ -112,8 +142,7 @@ git clone https://github.com/kunal-ma/polycon.git
       ./gradlew assembleRelease
       ```
     
-
-- The APK will be generated by both options in the `app/build/outputs/apk/release` directory.
+    - The APK will be generated in the `app/build/outputs/apk/release` directory.
 
 ### Installation
 
