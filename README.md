@@ -19,6 +19,9 @@ You can download pre-built APKs, which include my curated selection of icons, fr
 
 ## Building the Project
 
+> [!WARNING]
+> Please note that the following steps have been simplified for clarity. It is crucial to follow them **precisely** to prevent any potential issues. Names and file paths must be **accurate** and the format of the files must be maintained to ensure the project builds correctly.
+
 ### Clone the repo or download the [ZIP file](https://github.com/kunal-ma/polycon/archive/refs/heads/main.zip).
 
 ```sh
@@ -26,9 +29,6 @@ git clone https://github.com/kunal-ma/polycon.git
 ```
 
 ### Customizing the Icons
-
-> [!WARNING]
-> The icons must follow the specified parameters. Failure to do so may result in the icon pack not working as intended.
 
 - The icons must follow the following parameters:
   - The icon must be square in shape.
@@ -43,10 +43,7 @@ git clone https://github.com/kunal-ma/polycon.git
 
 ### Updating the XML Files
 
-> [!WARNING]
-> These XML files are used to generate the icon pack. Ensure that the XML files are updated properly and accurately. Failure to do so may result in the icon pack not working as intended.
-
-There are two ways to update the files and folders :
+Icon packs offer the ability to group icons into categories. This helps users make sense of the icons and find them easily. To update the XML files, follow these steps:
 
 - **Option 1** : You can manually update the XML files to reflect the changes made to the icons. For example, the `Apps` group contains the `google_pay.png` and `clock.png` icons. The folders and XML files are updated as follows:
 
@@ -56,7 +53,8 @@ There are two ways to update the files and folders :
   
     ```xml
     <!-- Add the group name to the category title -->
-    <!-- Add the icons to the group -->
+    <!-- Add icon entries under the category tag -->
+    <!-- Leave a line between groups -->
     <category title="Apps" />
     <item drawable="google_pay" />
     <item drawable="clock" />
@@ -65,12 +63,12 @@ There are two ways to update the files and folders :
   - Update the `app/src/main/res/values/icon_pack.xml` file:
 
     ```xml
-    <!-- Add the group name to the icon_pack array -->
+    <!-- Add all group name entries in the icon_pack array -->
     <string-array name="icon_pack"> 
         <item>Apps</item>
     </string-array>
 
-    <!-- Add the icons to the Apps array -->
+    <!-- Add the icon entries to the respective group array -->
     <string-array name="Apps">
         <item>google_pay</item>
         <item>clock</item>
@@ -148,7 +146,7 @@ There are two ways to update the files and folders :
 
 Transfer the APK generated in the previous step, or downloaded from the Releases page, to your Android device. Install the APK on your device by opening the file in a file manager and following the on-screen instructions.
 
-> [!WARNING]
+> [!NOTE]
 > You may need to enable the installation of apps from unknown sources in your device settings. Moreover, Google Play Protect may warn you about the APK, as it is not available on the Play Store. You can safely ignore this warning and install the APK.
 
 ## Roadmap
